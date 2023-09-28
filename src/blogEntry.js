@@ -1,5 +1,3 @@
-"use strict";
-
 class blogEntry {
     constructor(id,title, content) {
          this.id= id;

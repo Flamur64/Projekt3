@@ -1,38 +1,27 @@
-<!-- Hauptstruktur Was man sieht-->
 <html>
     <head>
         <link rel="stylesheet" type="text/css" href="/css/app.css" />
     </head>
     <body>
-        <%= entries.length %>  <!-- reads outs the lenght of the list = Output = 2 -->
+        <%= entries.length %>
         <% for(let entry of entries) { %> 
-            <div class = "entry" >     <!--Neu für Design, seperate in CSS ( see css file)--->
-                <h3><%= entry.title %></h3>  <!-- creates objects in entry.js-->
+            <div class = "entry" >
+                <h3><%= entry.title %></h3> 
                 <p><%= entry.content %></p>
                 <p>Public Date: <%= entry.publicDate.toISOString() %></p>
-
-               
-
                 <form class="delete-entry-form" method="POST" action="/blog/delete">
                     <input type="hidden" name="entryId" value="<%= entry.id %>" />
                     <button type="submit" class="delete-button">Löschen</button>
                   </form>
-           
             </div>
         <% } %>
-        
-<!-- Buttons & optik-->
 <form class ="new-entry" method="POST" action = "/blog/new">
-<!--Für die Optik-->
 <label for = "title">  title: </label>
 <input type = "text" name = "title" id = "title" />
 <br/ >
 <label for = "content" >Inhalt:</label><br />
 <textarea name = "content" id = "content"> </textarea>
 <br />
-<!-- Input loads in the server-->
 <input type="submit" value="send!" />
-
-
 </form>
-        <script type="text/javascript" src="/js/script.js"></script>
+ <script type="text/javascript" src="/js/script.js"></script>
