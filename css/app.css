@@ -1,0 +1,15 @@
+body {
+    background-color: rgba(15, 1, 4, 0);
+}
+
+
+.entry{
+background-color: white;
+border: 1px solid black;
+padding: 5px;
+}
+
+.entry h3 {
+
+    margin-top: 0xp;
+}
