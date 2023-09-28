@@ -1,4 +1,3 @@
-
 <!-- Hauptstruktur Was man sieht-->
 <html>
     <head>
@@ -10,6 +9,15 @@
             <div class = "entry" >     <!--Neu für Design, seperate in CSS ( see css file)--->
                 <h3><%= entry.title %></h3>  <!-- creates objects in entry.js-->
                 <p><%= entry.content %></p>
+                <p>Public Date: <%= entry.publicDate.toISOString() %></p>
+
+               
+
+                <form class="delete-entry-form" method="POST" action="/blog/delete">
+                    <input type="hidden" name="entryId" value="<%= entry.id %>" />
+                    <button type="submit" class="delete-button">Löschen</button>
+                  </form>
+           
             </div>
         <% } %>
         

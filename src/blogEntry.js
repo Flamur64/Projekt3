@@ -1,10 +1,11 @@
 "use strict";
 
 class blogEntry {
-    constructor(title, content) {
+    constructor(id,title, content) {
+         this.id= id;
         this.title = title;
         this.content = content;
-        
+        this.publicDate = new Date();
     }
 }
 
