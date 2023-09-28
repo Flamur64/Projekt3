@@ -6,14 +6,30 @@ let GuestbookEntry = require("./src/blogEntry");
 
 let app = express();
 
+app.use(express.urlencoded({ extended: true }))
+app.use(bodyParser.json())
+app.use(express.static("./public")); // makes the file "public" accecable
+
+app.get("/", (req, res) => {
+  res.send('<a href="/login">Zum Login</a>')
+})
+
+app.get("/login", function (req, res) {
+  res.sendFile("login.html", { root: "./" })
+})
+
+app.post("/login", function (req, res) {
+  const { benutzername, passwort } = req.body
+  if (benutzername === "gruppe3" && passwort === "12345") {
+    res.redirect("/index")
+  } else {
+    res.send("Anmeldung fehlgeschlagen.")
+  }
+})
+
 // ejs nutzbar
 app.set("view engine", "ejs");
 app.set("views", "./views");
-
-
-
-app.use(bodyParser.urlencoded({extended: true}));
-app.use(express.static("./public")); // makes the file "public" accecable
 
 let entries = [   // list for entrys ( see src)
     new GuestbookEntry("BlogTitel", " HEEEELOOOOOOO WOOORLD!"),  // Constructer defined on Guestbook entry
@@ -47,8 +63,8 @@ res.redirect("/index"); // browser wird auf index weitergeleitet
 
 
 
-app.listen(5000, () => {
-    console.log("App wurde gestartet auf localhost:5000");
+app.listen(3000, () => {
+    console.log("App wurde gestartet auf localhost:3000");
 })
 
 
