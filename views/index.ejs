@@ -1,40 +1,95 @@
+
 <!-- Hauptstruktur Was man sieht-->
 <html>
     <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" type="text/css" href="/css/app.css" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">  <!-- Initail scale = responsive-->
+        <script src="https://cdn.tiny.cloud/1/25cwh1c09l5gwnb2hvqg4mw0boo3czyh28r1hpg7icxprw08/tinymce/5/tinymce.min.js"></script>
+        <script src="https://cdn.ckeditor.com/4.16.2/standard/ckeditor.js"></script>
     </head>
+
     <body>
-        <%= entries.length %>  <!-- reads outs the lenght of the list = Output = 2 -->
+      <p> Anzahl der Einträge im Blog: <%= entries.length %> </p>   <!-- reads outs the lenght of the list = Output = 2 -->
         <% for(let entry of entries) { %> 
-            <div class = "entry" >     <!--Neu für Design, seperate in CSS ( see css file)--->
-                <h3><%= entry.title %></h3>  <!-- creates objects in entry.js-->
+            <div class = "entry" >   
+                <!-- creates objects in entry.js-->
+                <h2><%= entry.title %></h2>  
                 <p><%= entry.content %></p>
                 <p>Public Date: <%= entry.publicDate.toISOString() %></p>
-
-               
-
-                <form class="delete-entry-form" method="POST" action="/blog/delete">
-                    <input type="hidden" name="entryId" value="<%= entry.id %>" />
+                <!--Edit buttom schwierigste-->
+                <form method="POST" action="/blog/edit/<%= entry.id %>">
+                    <label for="content">Edit:</label>
+                    <textarea id="content" name="content"></textarea>
+                    <button type="submit">Save</button>
+                  </form>
+                 <!--DELETE buttom-->
+                <form class="delete-form" method="POST" action="/blog/delete">
+                    <input type="hidden" name="entryId" value="<%= entry.id %>" /> <!--greift auf id der List zu-->
                     <button type="submit" class="delete-button">Löschen</button>
                   </form>
-           
+                  
+                  <!-- KOmmentarsektion-->
+                  <h5>Kommentarsektion</h5>
+                  <ul>
+                      <% for (let comment of entry.comments) { %>
+                          <p> <strong><%= comment.visitor %> </strong> : <%= comment.comment %>    </p>  
+                          
+                      <% } %>
+                  </ul>
+                  
+                  <form class="comment-form" method="POST" action="/blog/<%= entry.id %>/add-comment">
+                    <!-- Field -->
+                    <label for="visitor">Besucher:</label>
+                    <input type="text" id="visitor" name="visitor" />
+                   
+
+                    <label for="comment">Kommentar:</label>
+                    <textarea id="comment" name="comment"></textarea>
+
+                    
+                          <!--comment buttom-->
+                      <button type="submit">Kommentieren</button>
+                  </form>
+
+                  <hr /> 
+
             </div>
         <% } %>
-        
-<!-- Buttons & optik-->
+    </body>
+<!-- Buttons außerhalb des Plates für Comment -->
 <form class ="new-entry" method="POST" action = "/blog/new">
-<!--Für die Optik-->
-<label for = "title">  title: </label>
+
+    
+<label for = "title">  Titel: </label>
 <input type = "text" name = "title" id = "title" />
-<br/ >
-<label for = "content" >Inhalt:</label><br />
-<textarea name = "content" id = "content"> </textarea>
+<br/>
+<label for="content">Inhalt:</label><br />
+<textarea name="content" id="content"></textarea>
+
 <br />
 <!-- Input loads in the server-->
 <input type="submit" value="send!" />
-
-
 </form>
-        <script type="text/javascript" src="/js/script.js"></script>
+
+
+        <script src="/js/index.js"></script> 
+
+
+        <script>
+            tinymce.init({
+              selector: '#content',
+              plugins: 'advlist autolink lists link image charmap print preview anchor',
+              toolbar_mode: 'floating',
+              // Add more configuration options as needed
+            });
+          </script>
+          
+
+
+
+
+//<script type="text/javascript">
+ //Initialisieren Sie CKEditor auf dem Textbereich mit der ID "content"
+//CKEDITOR.replace('content');
+//</script>
+
