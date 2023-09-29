@@ -1,104 +1,123 @@
-lobal Styles */
+/* Allgemeine Styles */
 body {
     font-family: Arial, sans-serif;
-    background-color: #f2f2f2;
     margin: 0;
     padding: 0;
-}
-
-/* Header Styles */
-h1 {
-    text-align: center;
+    background-color: #f2f2f2;
+  }
+  
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+  }
+  
+  /* Header */
+  header {
     background-color: #333;
     color: #fff;
-    padding: 20px;
-    margin: 0;
-}
-
-/* Blog Entry Styles */
-.entry {
+    padding: 10px 0;
+    text-align: center;
+  }
+  
+  /* Blog-Einträge */
+  .entry {
     background-color: #fff;
     border: 1px solid #ddd;
-    margin: 10px;
+    margin: 20px 0;
     padding: 20px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-}
-
-.entry h3 {
+  }
+  
+  .entry h2 {
     font-size: 24px;
     margin-bottom: 10px;
-    color: #333;
-}
-
-.entry p {
+  }
+  
+  .entry p {
     font-size: 16px;
-    color: #555;
     line-height: 1.5;
-}
-
-.entry p.date {
-    font-size: 14px;
-    color: #888;
-    margin-top: 10px;
-}
-
-/* Delete Button Styles */
-.delete-entry-form {
-    display: inline-block;
-}
-
-.delete-button {
-    background-color: #f44336;
+    margin-bottom: 15px;
+  }
+  
+  .entry form {
+    margin-top: 20px;
+  }
+  
+  /* Löschen-Button */
+  .delete-button {
+    background-color: #ff4444;
     color: #fff;
     border: none;
-    padding: 8px 16px;
-    margin-top: 10px;
+    padding: 5px 10px;
     cursor: pointer;
-    font-size: 14px;
-    border-radius: 4px;
-    transition: background-color 0.3s;
-}
-
-.delete-button:hover {
-    background-color: #d32f2f;
-}
-
-/* New Entry Form Styles */
-.new-entry {
-    background-color: #fff;
-    border: 1px solid #ddd;
-    margin: 20px auto;
-    max-width: 400px;
-    padding: 20px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-}
-
-.new-entry label {
+  }
+  
+  .delete-button:hover {
+    background-color: #cc0000;
+  }
+  
+  /* Kommentarsektion */
+  .comment-form {
+    margin-top: 20px;
+  }
+  
+  .comment-form label {
     display: block;
     font-weight: bold;
     margin-bottom: 5px;
-}
-
-.new-entry input[type="text"],
-.new-entry textarea {
+  }
+  
+  .comment-form input[type="text"],
+  .comment-form textarea {
     width: 100%;
     padding: 10px;
     margin-bottom: 10px;
     border: 1px solid #ddd;
     border-radius: 4px;
-    font-size: 16px;
-}
-
-.new-entry input[type="submit"] {
-    background-color: #4CAF50;
+  }
+  
+  .comment-form button {
+    background-color: #007bff;
     color: #fff;
     border: none;
-    padding: 12px 24px;
+    padding: 5px 10px;
     cursor: pointer;
-    font-size: 16px;
+  }
+  
+  .comment-form button:hover {
+    background-color: #0056b3;
+  }
+  
+  /* Neue Einträge */
+  .new-entry {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    margin: 20px 0;
+    padding: 20px;
+  }
+  
+  .new-entry label {
+    font-weight: bold;
+  }
+  
+  .new-entry input[type="text"],
+  .new-entry textarea {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ddd;
     border-radius: 4px;
-}
-
-.new-entry input[type="submit"]:hover {
-    background-color: #45a049;
-}
+  }
+  
+  .new-entry input[type="submit"] {
+    background-color: #28a745;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+  }
+  
+  .new-entry input[type="submit"]:hover {
+    background-color: #1e7e34;
+  }
+  
