@@ -108,7 +108,7 @@ app.post("/blog/new", (req,res) =>{
    
 
 
-// how delete works?
+//how delete works?
 
 //app.delete("/blog/delete/:id" , (req,res) =>
 //{
