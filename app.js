@@ -33,7 +33,7 @@ async function connect() {
   }}
 connect()
 
-pp.get("/", (req, res) => {
+app.get("/", (req, res) => {
   res.send('<a href="/register">Zur Registrierung</a><a href="/login">Zum Login</a>')
 })
 
