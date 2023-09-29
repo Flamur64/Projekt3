@@ -2,6 +2,7 @@ let express = require("express")
 let bodyParser = require("body-parser")
 let GuestbookEntry = require("./src/blogEntry")
 const path = require("path")
+const mongoose = require("mongoose")
 
 let app = express()
 
@@ -9,37 +10,49 @@ app.use(express.urlencoded({ extended: true }))
 app.use(bodyParser.json())
 app.use(express.static("./public"))
 
+const uri = "mongodb+srv://flamur:12345@cluster0.axyol2u.mongodb.net/?retryWrites=true&w=majority"
+
+async function connect() {
+  try {
+    await mongoose.connect(uri)
+    console.log("Verbunden mit Flamurs MongoDB")
+  } catch (error) {
+    console.error(error)
+  }}
+
+connect()
+
 app.get("/", (req, res) => {
-  res.send(`<html>
-  <head>
-      <meta charset="UTF-8">
-      <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  </head>
-      <style>
-          body {
-              background-color: blue;
-              display: flex;
-              justify-content: center; 
-              align-items: center;
-              height: 100vh;
-          }
-      </style>
-      <body>
-      <a href="/login">Zum Login</a>
-  </body>
-  </html>`)
+  res.send('<a href="/register">Zur Registrierung</a><a href="/login">Zum Login</a>')
 })
 
 app.get("/login", function (req, res) {
   res.sendFile("login.html", { root: "./" })
 })
 
-app.post("/login", function (req, res) {
-  const { benutzername, passwort } = req.body
-  if (benutzername === "gruppe3" && passwort === "12345") {
+app.get("/register", function (req, res) {
+  res.sendFile("register.html", { root: "./" })
+})
+
+const User = mongoose.model("User", {
+  username: String,
+  password: String,
+})
+
+app.post("/register", async (req, res) => {
+  const { username, password } = req.body
+  const user = new User({ username, password })
+  await user.save()
+  res.send('<a href="/login">Zum Login</a>')
+});
+
+app.post("/login", async (req, res) => {
+  const { username, password } = req.body
+  const user = await User.findOne({ username, password })
+  if (user) {
     res.redirect("/index")
   } else {
-    res.send("Anmeldung fehlgeschlagen.")
+    res.send("Falscher Benutzername oder Passwort.")
   }
 })
 
