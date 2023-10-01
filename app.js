@@ -76,7 +76,7 @@ app.post("/login", async (req, res) => {
   if (user) {
     res.redirect("/index")
   } else {
-    res.send("Falscher Benutzername oder Passwort.")
+    res.send('Falscher Benutzername oder Passwort.<a href="/login">Versuche erneut.</a>')
   }
 })
 // Ende
