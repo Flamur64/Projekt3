@@ -34,12 +34,9 @@ const uri = "mongodb+srv://flamur:12345@cluster0.axyol2u.mongodb.net/?retryWrite
 
 // Funktion zur Verbindung mit MongoDB
 async function connect() {
-  try {
     await mongoose.connect(uri)
     console.log("Verbunden mit Flamurs MongoDB")
-  } catch (error) {
-    console.error(error)
-  }}
+  }
 
 // Die Verbindung mit MongoDB
 connect()
