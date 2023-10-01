@@ -28,6 +28,8 @@ app.use('/uploads', express.static('uploads')); // makes the file "uploads" acce
 app.use(express.urlencoded({ extended: true }))
 app.use(bodyParser.json())
 
+
+
 // Anfang
 // Link zur Verbindung mit MongoDB
 const uri = "mongodb+srv://flamur:12345@cluster0.axyol2u.mongodb.net/?retryWrites=true&w=majority"
@@ -72,6 +74,7 @@ app.post("/login", async (req, res) => {
     } else {
       res.send('Falscher Benutzername oder Passwort.<a href="/login">Versuche erneut.</a>')}})
 // Ende
+
 
 
 // i want to create  on server side a image upload with multer that display the images on my ejs file     
