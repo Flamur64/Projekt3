@@ -34,58 +34,47 @@ const uri = "mongodb+srv://flamur:12345@cluster0.axyol2u.mongodb.net/?retryWrite
 
 // Funktion zur Verbindung mit MongoDB
 async function connect() {
-    await mongoose.connect(uri)
-    console.log("Verbunden mit Flamurs MongoDB")
-  }
+  await mongoose.connect(uri)
+  console.log("Verbunden mit Flamurs MongoDB")}
 
 // Die Verbindung mit MongoDB
 connect()
 
 // Die Startseite
 app.get("/", (req, res) => {
-  res.send('<a href="/register">Zur Registrierung</a><a href="/login">Zum Login</a>')
-})
+    res.send('<a href="/register">Zur Registrierung</a><a href="/login">Zum Login</a>')})
 
 // login.html mit dem Server verbinden
 app.get("/login", function (req, res) {
-  res.sendFile("login.html", { root: "./" })
-})
+    res.sendFile("login.html", { root: "./" })})
 
 // register.html mit dem Server verbinden
 app.get("/register", function (req, res) {
-  res.sendFile("register.html", { root: "./" })
-})
+    res.sendFile("register.html", { root: "./" })})
 
 // "User" erstellen mit MongoDB
 const User = mongoose.model("User", {
-  username: String,
-  password: String,
-})
+    username: String,
+    password: String,})
 
-// Registrierung von "User"
+ // Registrierung von "User"
 app.post("/register", async (req, res) => {
-  const { username, password } = req.body
-  await User.create({ username, password });
-  res.send('<p>Registrierung erfolgreich.</p><a href="/login">Zum Login.</a>')
-})
+    const { username, password } = req.body
+    await User.create({ username, password })
+    res.send('Registrierung erfolgreich.<a href="/login">Zum Login.</a>')})
 
 // Login von "User"
 app.post("/login", async (req, res) => {
-  const { username, password } = req.body
-  const user = await User.findOne({ username, password })
-  if (user) {
-    res.redirect("/index")
-  } else {
-    res.send('Falscher Benutzername oder Passwort.<a href="/login">Versuche erneut.</a>')
-  }
-})
+    const { username, password } = req.body
+    const user = await User.findOne({ username, password })
+    if (user) {
+      res.redirect("/index")
+    } else {
+      res.send('Falscher Benutzername oder Passwort.<a href="/login">Versuche erneut.</a>')}})
 // Ende
 
 
- 
 // i want to create  on server side a image upload with multer that display the images on my ejs file     
-
-
 
 let entries = [   // list for entrys ( see src)
     new blogEntry(1,"Blog Titel", " HEEEELOOOOOOO WOOORLD!" ),
