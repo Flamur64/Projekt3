@@ -59,7 +59,7 @@ const User = mongoose.model("User", {
     username: String,
     password: String,})
 
- // Registrierung von "User"
+// Registrierung von "User"
 app.post("/register", async (req, res) => {
     const { username, password } = req.body
     await User.create({ username, password })
